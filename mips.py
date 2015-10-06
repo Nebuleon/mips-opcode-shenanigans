@@ -273,7 +273,7 @@ class RegInt0(object):
         return 0
     def get_known_mask(self):
         return 0xFFFFFFFFFFFFFFFF
-    def get_vresion(self):
+    def get_version(self):
         return 0
     def is_known(self):
         return True
