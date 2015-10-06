@@ -125,7 +125,7 @@ def cache(n):
 
 # - - - OUTPUT FUNCTIONS - - -
 # You can replace these functions if you want this module to output things
-# differently. For example, mips.ri = code_object.
+# differently. For example, mips.simplify_notice = code_object.
 
 def simplify_notice(string):
     """Can be reassigned to a function that prints simplification information."""
