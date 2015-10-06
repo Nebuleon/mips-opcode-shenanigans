@@ -3464,7 +3464,7 @@ class SD(StoreIntOffset, Op):
         super(self.__class__, self).__init__(pc, opcode)
         self.s, self.addr_reg, self.imm = s, addr_reg, imm
     def _str_bits(self):
-        return "SD        %s, %s" % (rc1(self.s), memri16(self.addr_reg, self.imm))
+        return "SD        %s, %s" % (ri(self.s), memri16(self.addr_reg, self.imm))
     def _repr_bits(self):
         return '%d, %d, %d' % (self.s, self.addr_reg, self.imm)
 
