@@ -3114,6 +3114,10 @@ class LDL(LoadIntOffset, Op):
     def simplify(self):
         if self.d == 0: return NOP(self.pc, self.opcode)
         return self
+    def get_int_reads(self):
+        # LDL reads part of the source register in order to preserve the
+        # rightmost bytes.
+        return (1 << self.addr_reg) | (1 << self.d)
     def update_int_state(self, int_state):
         rd = int_state.reg[self.d]
         rd.make_unknown()
@@ -3131,6 +3135,10 @@ class LDR(LoadIntOffset, Op):
     def simplify(self):
         if self.d == 0: return NOP(self.pc, self.opcode)
         return self
+    def get_int_reads(self):
+        # LDR reads part of the source register in order to preserve the
+        # leftmost bytes.
+        return (1 << self.addr_reg) | (1 << self.d)
     def update_int_state(self, int_state):
         rd = int_state.reg[self.d]
         rd.make_unknown()
@@ -3182,6 +3190,10 @@ class LWL(LoadIntOffset, Op):
     def simplify(self):
         if self.d == 0: return NOP(self.pc, self.opcode)
         return self
+    def get_int_reads(self):
+        # LWL reads part of the source register in order to preserve the
+        # rightmost bytes.
+        return (1 << self.addr_reg) | (1 << self.d)
     def update_int_state(self, int_state):
         rd = int_state.reg[self.d]
         rd.make_unknown()
@@ -3252,6 +3264,10 @@ class LWR(LoadIntOffset, Op):
     def simplify(self):
         if self.d == 0: return NOP(self.pc, self.opcode)
         return self
+    def get_int_reads(self):
+        # LWR reads part of the source register in order to preserve the
+        # leftmost bytes.
+        return (1 << self.addr_reg) | (1 << self.d)
     def update_int_state(self, int_state):
         rd = int_state.reg[self.d]
         rd.make_unknown()
