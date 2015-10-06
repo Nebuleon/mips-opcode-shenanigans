@@ -386,7 +386,7 @@ class Store(MemoryAccess):
     pass
 
 class StoreIntOffset(NoIntWrites, NoIntState, Store):
-    def get_int_reads(self): return 1 << self.addr_reg
+    def get_int_reads(self): return (1 << self.addr_reg) | (1 << self.s)
 
 class StoreCop1Offset(NoIntWrites, NoIntState, Store, Cop1):
     def get_int_reads(self): return 1 << self.addr_reg
