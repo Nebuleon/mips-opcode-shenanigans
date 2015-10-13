@@ -48,6 +48,10 @@ def optimize(procedure, is_boundary):
     return result
 
 if __name__ == '__main__':
+    endian = '>L'  # >L is for big-endian files, <L for little-endian files.
+    if sys.argc >= 3:
+        if sys.argv[2] == 'little':
+            endian = '<L'
     procedure, procedure_pc, in_procedure = [], 0, 0
     with open(sys.argv[1], 'rb') as code_file:
         procedure_pc, procedure, in_procedure = 0, [], 0
@@ -56,7 +60,7 @@ if __name__ == '__main__':
             if len(opcode_str) != 4:
                 break
             # >L is for big-endian files. Use <L for little-endian files.
-            opcode = struct.unpack('>L', opcode_str)[0]
+            opcode = struct.unpack(endian, opcode_str)[0]
             if in_procedure:
                 pc = code_file.tell() - 4
                 op = mips.disassemble(pc, opcode)
