@@ -49,7 +49,7 @@ def optimize(procedure, is_boundary):
 
 if __name__ == '__main__':
     endian = '>L'  # >L is for big-endian files, <L for little-endian files.
-    if sys.argc >= 3:
+    if len(sys.argv) >= 3:
         if sys.argv[2] == 'little':
             endian = '<L'
     procedure, procedure_pc, in_procedure = [], 0, 0
