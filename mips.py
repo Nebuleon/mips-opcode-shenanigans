@@ -624,7 +624,7 @@ class JALR(DSBranch, Op):
         return self
     def _str_bits(self):
         if self.d == 31: return "JALR      %s" % (ri(self.s))
-        else:            return "JALR      %s" % (ri(self.s), ri(self.d))
+        else:            return "JALR      %s, %s" % (ri(self.d), ri(self.s))
     def _repr_bits(self):
         return '%d, %d' % (self.s, self.d)
 
